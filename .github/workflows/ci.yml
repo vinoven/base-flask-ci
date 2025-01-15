@@ -1,28 +1,28 @@
-name: Flask CI
+name: Flask CI # Имя workflow
 
+# Определяем триггеры: запускать CI при push и pull_request в ветку main
 on:
   push:
     branches:
-      - master
+      - main # Проверка кода при пуше в ветку main
   pull_request:
     branches:
-      - master
+      - main # Проверка кода при открытии PR в ветку main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build: # Название задания
+    runs-on: ubuntu-latest # Указываем операционную систему для запуска
 
     steps:
-      - name: Checkout code
+      - name: Checkout code # Шаг: клонируем репозиторий
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Set up Python # Устанавливаем Python версии 3.9
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
-      - name: Install dependencies
+      - name: Install dependencies # Устанавливаем зависимости проекта
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
+          python -m pip install --upgrade pip  # Обновляем pip
+          pip install -r requirements.txt  # Устанавливаем зависимости из requirements.txt
